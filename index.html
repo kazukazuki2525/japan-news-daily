@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+  <html lang="ja">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily News Summary</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+        --bg: #fafafa;
+        --surface: #ffffff;
+        --text: #1a1a1a;
+    --text-secondary: #666666;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+          --border: #e5e7eb;
+          --section-bg: #f8fafc;
+          --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+  body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+  .header {
+        background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+  .header-inner {
+        max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  .header h1 {
+        font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+  .header h1 span {
+        color: var(--accent);
+}
+  .header-meta {
+        font-size: 12px;
+    color: var(--text-secondary);
+}
+
+  .date-nav {
+        max-width: 720px;
+    margin: 0 auto;
+    padding: 16px 20px 0;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+  .date-nav::-webkit-scrollbar { display: none; }
+
+      .date-btn {
+        flex-shrink: 0;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+  .date-btn:hover {
+        border-color: var(--accent);
+    color: var(--accent);
+}
+  .date-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    }
+
+  .main {
+        max-width: 720px;
+    margin: 0 auto;
+    padding: 16px 20px 80px;
+}
+
+  .day-header {
+        margin: 20px 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+}
+  .day-header .date-label {
+        font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+  .day-header .fetched {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .section {
+        margin-bottom: 20px;
+}
+  .section-title {
+        display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    background: var(--accent-light);
+    border-radius: 6px;
+}
+
+  .article {
+        background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.15s ease;
+  }
+  .article:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+  .article-headline {
+        font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+  .article-summary {
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily News Summary</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #fafafa; --surface: #ffffff; --text: #1a1a1a;
+    --text-secondary: #666666; --accent: #2563eb; --accent-light: #eff6ff;
+    --border: #e5e7eb; --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 20px; position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 18px; font-weight: 700; }
+  .header h1 span { color: var(--accent); }
+  .header-meta { font-size: 12px; color: var(--text-secondary); }
+  .date-nav { max-width: 720px; margin: 0 auto; padding: 16px 20px 0; display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .date-nav::-webkit-scrollbar { display: none; }
+  .date-btn { flex-shrink: 0; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); color: var(--text-secondary); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
+  .date-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .date-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .main { max-width: 720px; margin: 0 auto; padding: 16px 20px 80px; }
+  .day-header { margin: 20px 0 16px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); }
+  .day-header .date-label { font-size: 22px; font-weight: 700; }
+  .day-header .fetched { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+  .section { margin-bottom: 20px; }
+  .section-title { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 10px; padding: 4px 12px; background: var(--accent-light); border-radius: 6px; }
+  .article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 8px; box-shadow: var(--shadow); }
+  .article:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .article-headline { font-size: 15px; font-weight: 600; margin-bottom: 6px; line-height: 1.5; }
+  .article-summary { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .status-msg { text-align: center; padding: 60px 20px; color: var(--text-secondary); font-size: 14px; }
+  .empty { text-align: center; padding: 40px 20px; color: var(--text-secondary); }
+  @media (max-width: 480px) { .header { padding: 12px 16px; } .date-nav { padding: 12px 16px 0; } .main { padding: 12px 16px 60px; } .day-header .date-label { font-size: 19px; } .article { padding: 12px 14px; } }
+</style>
+</head>
+<body>
+<div class="header"><div class="header-inner"><h1><span>\ud83d\udcf0</span> Daily News</h1><div class="header-meta" id="totalCount"></div></div></div>
+<div class="date-nav" id="dateNav"></div>
+<div class="main" id="content"><div class="status-msg">\u8aad\u307f\u8fbc\u307f\u4e2d...</div></div>
+<script>
+(function(){var s=[],a=null;function gi(t){if(t.includes("\u30c8\u30c3\u30d7"))return"\ud83d\udd34";if(t.includes("\u56fd\u5185"))return"\ud83c\uddef\ud83c\uddf5";if(t.includes("\u56fd\u969b"))return"\ud83c\udf0d";if(t.includes("\u7d4c\u6e08")||t.includes("\u30d3\u30b8\u30cd\u30b9"))return"\ud83d\udcb9";if(t.includes("\u30c6\u30af\u30ce\u30ed\u30b8\u30fc"))return"\ud83d\udcbb";if(t.includes("\u30b9\u30dd\u30fc\u30c4"))return"\u26bd";return"\ud83d\udccc";}
+function fd(d){var x=new Date(d+"T00:00:00"),w=["\u65e5","\u6708","\u706b","\u6c34","\u6728","\u91d1","\u571f"];return(x.getMonth()+1)+"\u6708"+x.getDate()+"\u65e5\uff08"+w[x.getDay()]+"\uff09";}
+function fdf(d){var x=new Date(d+"T00:00:00"),w=["\u65e5","\u6708","\u706b","\u6c34","\u6728","\u91d1","\u571f"];return x.getFullYear()+"\u5e74"+(x.getMonth()+1)+"\u6708"+x.getDate()+"\u65e5\uff08"+w[x.getDay()]+"\uff09";}
+function rn(){var n=document.getElementById("dateNav");n.innerHTML="";s.forEach(function(e){var b=document.createElement("button");b.className="date-btn"+(e.date===a?" active":"");b.textContent=fd(e.date);b.addEventListener("click",function(){a=e.date;rn();rc();});n.appendChild(b);});}
+function rc(){var m=document.getElementById("content"),d=s.find(function(e){return e.date===a;});if(!d){m.innerHTML='<div class="empty">\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093</div>';return;}var h='<div class="day-header"><div class="date-label">'+fdf(d.date)+"</div>"+(d.fetchedAt?'<div class="fetched">\u53d6\u5f97: '+eh(d.fetchedAt)+"</div>":"")+"</div>";d.sections.forEach(function(sec){h+='<div class="section"><div class="section-title">'+gi(sec.title)+" "+eh(sec.title)+"</div>";sec.articles.forEach(function(ar){h+='<div class="article"><div class="article-headline">'+eh(ar.headline)+'</div><div class="article-summary">'+eh(ar.summary)+"</div></div>";});h+="</div>";});m.innerHTML=h;window.scrollTo({top:0,behavior:"smooth"});}
+function eh(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML;}
+function um(){var t=0;s.forEach(function(e){e.sections.forEach(function(sec){t+=sec.articles.length;});});document.getElementById("totalCount").textContent=s.length+"\u65e5\u5206 / "+t+"\u4ef6";}
+fetch("data/summaries.json").then(function(r){if(!r.ok)throw new Error("Failed");return r.json();}).then(function(d){s=d.sort(function(x,y){return y.date.localeCompare(x.date);});if(s.length>0)a=s[0].date;rn();rc();um();}).catch(function(e){document.getElementById("content").innerHTML='<div class="status-msg">\u30c7\u30fc\u30bf\u306e\u8aad\u307f\u8fbc\u307f\u306b\u5931\u6557\u3057\u307e\u3057\u305f\u3002<br><small>'+eh(e.message)+"</small></div>";});})();
+</script>
+</body>
+</html>
